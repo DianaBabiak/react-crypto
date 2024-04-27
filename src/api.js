@@ -1,11 +1,17 @@
-import {cryptoAssets, cryptoData} from './data.js'
+import {cryptoAssets} from './data.js'
 
-export function fakeFetchCrypto (){
-    return new Promise(resolve=>{
-        setTimeout(()=>{
-           resolve(cryptoData)
-        },1000)
-    })
+const options = {
+    method: 'GET',
+    headers: {
+        accept: 'application/json',
+        'X-API-KEY': 'BcKtTfeGsv1UHiQtoVvBciVkY4mVV2TBJYLBq7mlQKk='
+    }
+};
+
+export function fetchCrypto (){
+    return fetch('https://openapiv1.coinstats.app/coins', options)
+        .then(response => response.json())
+        .catch(err => console.error(err));
 }
 
 export function fakeFetchAssets (){
