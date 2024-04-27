@@ -1,5 +1,5 @@
 import {createContext, useEffect, useState} from "react";
-import {fakeFetchAssets, fakeFetchCrypto} from "../api.js";
+import {fakeFetchAssets,fetchCrypto} from "../api.js";
 import {percentDifference} from "../utils.js";
 
 export const CryptoContext = createContext({
@@ -29,12 +29,17 @@ export function CryptoContextProvider ({children}){
 
     useEffect(()=>{
         async function preload (){
-            setIsLoading(true)
-            const {result}= await fakeFetchCrypto()
-            setCrypto(result)
-            const assets = await fakeFetchAssets()
-            setAssets(mapAssets(assets, result))
-            setIsLoading(false)
+            try{
+                setIsLoading(true)
+                const {result}= await fetchCrypto()
+                setCrypto(result)
+                const assets = await fakeFetchAssets()
+                setAssets(mapAssets(assets, result))
+            } catch (error){
+                console.log(error)
+            } finally {
+                setIsLoading(false)
+            }
         }
         preload()
     },[])
