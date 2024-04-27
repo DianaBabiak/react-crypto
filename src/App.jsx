@@ -1,14 +1,13 @@
-import { Layout } from 'antd';
-const { Header, Footer, Sider, Content } = Layout;
+import {Layout} from "./components/layout/Layout.jsx";
+import {useContext} from "react";
+import {CryptoContext} from "./context/cripto-context.jsx";
+import {Spin} from "antd";
 
-
-const siderStyle = {
-  textAlign: 'center',
-  lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#1677ff',
-};
 export default function App() {
+  const {isLoading} = useContext(CryptoContext)
 
+  if(isLoading){
+    return <Spin fullscreen />
+  }
   return <Layout/>
 }
