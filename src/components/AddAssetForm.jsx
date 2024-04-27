@@ -62,7 +62,7 @@ export const AddAssetForm=({ onClose })=> {
                         <img
                             style={{ width: 20 }}
                             src={option.data.icon}
-                            atl={option.data.label}
+                            alt={option.data.label}
                         />{' '}
                         {option.data.label}
                     </Space>
