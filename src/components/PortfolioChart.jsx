@@ -1,5 +1,5 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
+import {Doughnut  } from 'react-chartjs-2';
 import {useContext} from "react";
 import {CryptoContext} from "../context/cripto-context.jsx";
 
@@ -7,7 +7,8 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const PortfolioChart = ()=>{
     const  {assets} =useContext(CryptoContext)
-  const data = {
+
+    const data = {
         labels: assets.map(asset=>asset.name),
         datasets: [
             {
@@ -21,10 +22,11 @@ export const PortfolioChart = ()=>{
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)',
                 ],
-                borderWidth: 2,
-            },
+                hoverBackgroundColor: ['rgba(255, 182, 193, 1)','rgba(176, 196, 222, 1)','rgba(255, 228, 181, 1)','rgba(143, 188, 143, 1)',],
+            }
         ],
     };
+
     return(
         <div style={{
             display: 'flex',
@@ -32,7 +34,9 @@ export const PortfolioChart = ()=>{
             justifyContent: 'center',
             height: 400,
         }}>
-            <Pie data={data} />
+            <Doughnut
+                data={data}
+            />
         </div>
 
     )

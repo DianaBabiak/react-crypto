@@ -47,7 +47,7 @@ export function CryptoContextProvider ({children}){
     function addAsset(newAsset) {
         setAssets((prev) => mapAssets([...prev, newAsset], crypto))
     }
-    return <CryptoContext.Provider value={{isLoading , assets , crypto,  addAsset}}>
+    return <CryptoContext.Provider value={{isLoading , assets , crypto,  addAsset, setAssets}}>
         {children}
     </CryptoContext.Provider>
 }
